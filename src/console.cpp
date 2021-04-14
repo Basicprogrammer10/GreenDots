@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <utility>
+#include <conio.h>
 
 namespace console {
     void enableAnsiCodes() {
@@ -19,12 +20,15 @@ namespace console {
         std::cout << "\x1B[" << colorCode << "m" << text << "\033[0m" << stringEnd;
     }
 
+    // Used DebugPrint to print some text then waits for the user to press a key
+    void waitForKeypress(const std::string& text, int colorCode) {
+        debugPrint(text, colorCode, "");
+        std::cin.get();
+    }
+
     // Prints text using DebugPrint and exits the program after a pause
     void errorPrint(const std::string& text, int colorCode, int exitCode){
         debugPrint(text, colorCode);
-        std::cout << "\x1B[33m";
-        system("pause");
-        std::cout << "\033[0m";
         exit(exitCode);
     }
 }

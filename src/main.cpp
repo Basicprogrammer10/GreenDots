@@ -2,8 +2,9 @@
 
 #include "console.hpp"
 #include "git.hpp"
+#include "config.hpp"
 
-#define version "0.0.1"
+#define version "0.0.2"
 
 int main() {
     console::enableAnsiCodes();
@@ -14,6 +15,11 @@ int main() {
     bool gitInstalled = git::checkForGit();
     if (!gitInstalled) console::errorPrint("[ FAILED ]", 31, -1);
     console::debugPrint("[ SUCCESS ]", 32);
+
+    console::debugPrint("[*] Checking for ConfigFile", 34, " ");
+    bool configFileCreated = config::checkForConfig("config.confnose");
+    if (!configFileCreated) console::errorPrint("[ NOT FOUND ]", 31, -1);
+    console::debugPrint("[ FOUND ]", 32);
 
     return 0;
 }
