@@ -4,7 +4,9 @@
 #include "git.hpp"
 #include "config.hpp"
 
-#define version "0.0.2"
+#define version "0.0.3"
+#define configFile "config.confnose"
+#define defaultConfig "gitFolder = \"\""
 
 int main() {
     console::enableAnsiCodes();
@@ -17,8 +19,15 @@ int main() {
     console::debugPrint("[ SUCCESS ]", 32);
 
     console::debugPrint("[*] Checking for ConfigFile", 34, " ");
-    bool configFileCreated = config::checkForConfig("config.confnose");
-    if (!configFileCreated) console::errorPrint("[ NOT FOUND ]", 31, -1);
+    bool configFileCreated = config::checkForConfig(configFile);
+    if (!configFileCreated) {
+        console::debugPrint("[ NOT FOUND ]", 31);
+        console::debugPrint("[*] Creating ConfigFile", 36, " ");
+        if (!config::createConfigFile(configFile, defaultConfig)) console::errorPrint("[ FAILED ]", 31, -1);
+        console::debugPrint("[ SUCCESS ]", 32);
+        console::debugPrint("[*] Go edit the config file then re run this program", 35);
+        return 0;
+    }
     console::debugPrint("[ FOUND ]", 32);
 
     return 0;
