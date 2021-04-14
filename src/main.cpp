@@ -36,6 +36,8 @@ int main() {
     console::debugPrint("[ SUCCESS ]", 32);
 
     std::cout << config::getConfigValueFromKey(config, "gitFolder") << std::endl;
+    //std::cout << git::checkIfGitRepo(config::getConfigValueFromKey(config, "gitFolder"));
+    git::checkIfGitRepo(config::getConfigValueFromKey(config, "gitFolder"));
 
     return 0;
 }

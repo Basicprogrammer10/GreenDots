@@ -1,6 +1,8 @@
-#include <string>
 #include <vector>
-#include <iostream>
+#include <cstdio>
+#include <memory>
+#include <stdexcept>
+#include <array>
 
 namespace common {
     // Split a string into a vector by a certain char
