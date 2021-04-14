@@ -2,8 +2,9 @@
 
 #include <string>
 #include <fstream>
-#include <iostream>
 #include <vector>
+
+#include "common.hpp"
 
 namespace config {
     // Check if configFile has been created
@@ -24,6 +25,7 @@ namespace config {
         return true;
     }
 
+    // Read config file and return it as a string
     std::string readConfig(const std::string& name) {
         std::ifstream file(name, std::ios::binary | std::ios::ate);
         std::string fullFile;
@@ -36,5 +38,15 @@ namespace config {
         file.close();
 
         return fullFile;
+    }
+
+    // Parse the output of readConfig as a string and get value of the key
+    std::string getConfigValueFromKey(const std::string& configString, std::string key) {
+        std::vector<std::string> config = common::tokenize(configString, '=');
+        std::string output;
+        for (int i = 0; i < config.size(); i++) if (config[i] == key || config[i] == key + " ") output = config[i + 1];
+        output = common::cleanConfigString(output);
+
+        return output;
     }
 }

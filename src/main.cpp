@@ -34,7 +34,8 @@ int main() {
     std::string config = config::readConfig(configFile);
     if (config.empty()) console::errorPrint("[ FAILED ]", 31, -1);
     console::debugPrint("[ SUCCESS ]", 32);
-    std::cout << config;
+
+    std::cout << config::getConfigValueFromKey(config, "gitFolder") << std::endl;
 
     return 0;
 }
