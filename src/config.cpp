@@ -2,6 +2,8 @@
 
 #include <string>
 #include <fstream>
+#include <iostream>
+#include <vector>
 
 namespace config {
     // Check if configFile has been created
@@ -19,7 +21,20 @@ namespace config {
 
         outfile << data << std::endl;
         outfile.close();
-
         return true;
+    }
+
+    std::string readConfig(const std::string& name) {
+        std::ifstream file(name, std::ios::binary | std::ios::ate);
+        std::string fullFile;
+        std::string line;
+        if (file.fail()) return "";
+
+        std::vector<char> buffer(file.tellg());
+        file.seekg(0, std::ios::beg);
+        while (std::getline(file,line)) fullFile += line += "\n";
+        file.close();
+
+        return fullFile;
     }
 }
