@@ -17,9 +17,8 @@ namespace config {
 
     // Crate config file and supply it with starter data
     bool createConfigFile(const std::string& name, const std::string& data) {
-        std::ofstream outfile (name);
+        std::ofstream outfile(name);
         if (outfile.fail()) return false;
-
         outfile << data << std::endl;
         outfile.close();
         return true;

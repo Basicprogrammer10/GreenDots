@@ -3,6 +3,8 @@
 #include <vector>
 #include <memory>
 #include <stdexcept>
+#include <fstream>
+#include <string>
 
 namespace common {
     // Split a string into a vector by a certain char
@@ -25,6 +27,18 @@ namespace common {
         if (quotesSplit.size() >= 2) final = quotesSplit[1];
 
         return final;
+    }
+
+    // Overwrite a files content
+    bool updateFile(const std::string &fileName, const std::string &text) {
+        std::fstream fileHandler;
+        std::string myLine;
+        fileHandler.open(fileName, std::ios::in | std::ios::out);
+        if (fileHandler.fail()) return false;
+        fileHandler << text;
+        fileHandler.close();
+
+        return true;
     }
 
     // Check if file exists

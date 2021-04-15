@@ -49,8 +49,18 @@ int main() {
     console::debugPrint("[*] Validating daily File", 34, " ");
     std::string dailyFile = gitFolder + "\\" + config::getConfigValueFromKey(config, "dailyFile");
     bool isFileCreated = common::exists(dailyFile);
-    if (!isFileCreated) console::errorPrint("[ NOT FOUND ]", 31, -1);
-    console::debugPrint("[ FOUND ]", 32);
+    if (!isFileCreated) {
+        console::debugPrint("[ NOT FOUND ]", 31);
+        console::debugPrint("[*] Creating daily File", 36, " ");
+        bool createdDailyFile = config::createConfigFile(dailyFile, "");
+        if (!createdDailyFile) console::errorPrint("[ FAILED ]", 31, -1);
+    }
+    console::debugPrint("[ SUCCESS ]", 32);
+
+    console::debugPrint("[*] Writing to daily File", 34, " ");
+    bool appendToFile =  common::updateFile(dailyFile, "Nose");
+    if (!appendToFile) console::errorPrint("[ FAILED ]", 31, -1);
+    console::debugPrint("[ SUCCESS ]", 32);
 
     return 0;
 }
