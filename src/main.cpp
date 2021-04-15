@@ -35,9 +35,10 @@ int main() {
     if (config.empty()) console::errorPrint("[ FAILED ]", 31, -1);
     console::debugPrint("[ SUCCESS ]", 32);
 
-    std::cout << config::getConfigValueFromKey(config, "gitFolder") << std::endl;
-    //std::cout << git::checkIfGitRepo(config::getConfigValueFromKey(config, "gitFolder"));
-    git::checkIfGitRepo(config::getConfigValueFromKey(config, "gitFolder"));
+    console::debugPrint("[*] Validating Git Repo Location", 34, " ");
+    bool isValidRepo = git::checkIfGitRepo(config::getConfigValueFromKey(config, "gitFolder"));
+    if (!isValidRepo) console::errorPrint("[ FAILED ]", 31, -1);
+    console::debugPrint("[ SUCCESS ]", 32);
 
     return 0;
 }
