@@ -1,11 +1,12 @@
 // Common misc functions used in multiple places
 
 #include <vector>
-#include <memory>
 #include <stdexcept>
 #include <fstream>
 #include <string>
 #include <ctime>
+#include <chrono>
+#include <thread>
 
 namespace common {
     // Split a string into a vector by a certain char
@@ -58,5 +59,9 @@ namespace common {
                + std::to_string(now->tm_mday);
 
         return time;
+    }
+
+    void sleep(int ms) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(ms));
     }
 }

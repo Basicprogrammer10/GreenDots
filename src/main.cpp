@@ -7,7 +7,7 @@
 #include "config.hpp"
 #include "common.hpp"
 
-#define version "0.0.5"
+#define version "0.0.6"
 #define configFile "config.confnose"
 
 int main() {
@@ -57,20 +57,35 @@ int main() {
     }
     console::debugPrint("[ SUCCESS ]", 32);
 
-    console::debugPrint("[*] Writing to daily File", 34, " ");
-    bool appendToFile =  common::updateFile(dailyFile, common::getDateAsString());
-    if (!appendToFile) console::errorPrint("[ FAILED ]", 31, -1);
-    console::debugPrint("[ SUCCESS ]", 32);
+    std::vector<std::string> loadingAnimation = {"/", "-", "\\", "|"};
+    std::string pastDate;
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "EndlessLoop"
+    while (true) {
+        for (auto & i : loadingAnimation) {
+            console::debugPrint("\033[0G[" + i + "]", 36, "");
+            common::sleep(500);
+        }
+        if (common::getDateAsString() != pastDate) {
+            pastDate = common::getDateAsString();
+            console::debugPrint(" " + pastDate + "\n\x1B[34m[*] Writing to daily File", 36, " ");
+            bool appendToFile =  common::updateFile(dailyFile, common::getDateAsString());
+            if (!appendToFile) console::errorPrint("[ FAILED ]", 31, 0);
+            else console::debugPrint("[ SUCCESS ]", 32);
 
-    console::debugPrint("[*] Committing to Git", 34, " ");
-    bool commitRepoSuccess = git::commitRepo(gitFolder, "Testing");
-    if (!commitRepoSuccess) console::errorPrint("[ FAILED ]", 31, -1);
-    console::debugPrint("[ SUCCESS ]", 32);
+            console::debugPrint("[*] Committing to Git", 34, " ");
+            bool commitRepoSuccess = git::commitRepo(gitFolder, "Testing");
+            if (!commitRepoSuccess) console::errorPrint("[ FAILED ]", 31, 0);
+            else console::debugPrint("[ SUCCESS ]", 32);
 
-    console::debugPrint("[*] Committing to Git", 34, " ");
-    bool pushRepoSuccess = git::pushRepo(gitFolder);
-    if (!pushRepoSuccess) console::errorPrint("[ FAILED ]", 31, -1);
-    console::debugPrint("[ SUCCESS ]", 32);
+            console::debugPrint("[*] Pushing to Git", 34, " ");
+            bool pushRepoSuccess = git::pushRepo(gitFolder);
+            if (!pushRepoSuccess) console::errorPrint("[ FAILED ]", 31, 0);
+            else console::debugPrint("[ SUCCESS ]", 32);
+        }
+        //break;
+    }
+#pragma clang diagnostic pop
 
     return 0;
 }

@@ -19,8 +19,8 @@ namespace console {
     }
 
     // Prints text using DebugPrint and exits the program after a pause
-    void errorPrint(const std::string& text, int colorCode, int exitCode){
+    void errorPrint(const std::string& text, int colorCode, int exitCode = 0){
         debugPrint(text, colorCode);
-        exit(exitCode);
+        if (exitCode != 0) exit(exitCode);
     }
 }
