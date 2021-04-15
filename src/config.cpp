@@ -42,8 +42,15 @@ namespace config {
 
     // Parse the output of readConfig as a string and get value of the key
     std::string getConfigValueFromKey(const std::string& configString, std::string key) {
-        std::vector<std::string> config = common::tokenize(configString, '=');
+        std::vector<std::string> lines = common::tokenize(configString, '\n');
+        std::vector<std::string> config;
         std::string output;
+
+        for (auto & line : lines) {
+            std::vector<std::string> split = common::tokenize(line, '=');;
+            config.insert(config.end(), split.begin(), split.end());
+        }
+
         for (int i = 0; i < config.size(); i++) if (config[i] == key || config[i] == key + " ") output = config[i + 1];
         output = common::cleanConfigString(output);
 

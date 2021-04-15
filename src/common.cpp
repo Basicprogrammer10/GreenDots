@@ -3,6 +3,7 @@
 #include <memory>
 #include <stdexcept>
 #include <array>
+#include <iostream>
 
 namespace common {
     // Split a string into a vector by a certain char
@@ -25,5 +26,12 @@ namespace common {
         if (quotesSplit.size() >= 2) final = quotesSplit[1];
 
         return final;
+    }
+
+    // Check if file exists
+    bool exists(const std::string &name) {
+        if (name.empty()) return false;
+        struct stat buffer{};
+        return (stat(name.c_str(), &buffer) == 0);
     }
 }
