@@ -24,4 +24,22 @@ namespace git {
         if (result != 0) return false;
         return true;
     }
+
+    // Commits all changes in git repo
+    // Pipe to /dev/null for linux
+    bool commitRepo(const std::string& folder, const std::string& message) {
+        std::string command = "cd " + folder + " >nul 2>&1 && git add -A && git commit -m \"" + message + "\" >nul 2>&1";
+        int result = system(command.c_str());
+        if (result != 0) return false;
+        return true;
+    }
+
+    // Commits all changes in git repo
+    // Pipe to /dev/null for linux
+    bool pushRepo(const std::string& folder) {
+        std::string command = "cd " + folder + " >nul 2>&1 && git push >nul 2>&1";
+        int result = system(command.c_str());
+        if (result != 0) return false;
+        return true;
+    }
 }

@@ -7,7 +7,7 @@
 #include "config.hpp"
 #include "common.hpp"
 
-#define version "0.0.4"
+#define version "0.0.5"
 #define configFile "config.confnose"
 
 int main() {
@@ -58,8 +58,18 @@ int main() {
     console::debugPrint("[ SUCCESS ]", 32);
 
     console::debugPrint("[*] Writing to daily File", 34, " ");
-    bool appendToFile =  common::updateFile(dailyFile, "Nose");
+    bool appendToFile =  common::updateFile(dailyFile, common::getDateAsString());
     if (!appendToFile) console::errorPrint("[ FAILED ]", 31, -1);
+    console::debugPrint("[ SUCCESS ]", 32);
+
+    console::debugPrint("[*] Committing to Git", 34, " ");
+    bool commitRepoSuccess = git::commitRepo(gitFolder, "Testing");
+    if (!commitRepoSuccess) console::errorPrint("[ FAILED ]", 31, -1);
+    console::debugPrint("[ SUCCESS ]", 32);
+
+    console::debugPrint("[*] Committing to Git", 34, " ");
+    bool pushRepoSuccess = git::pushRepo(gitFolder);
+    if (!pushRepoSuccess) console::errorPrint("[ FAILED ]", 31, -1);
     console::debugPrint("[ SUCCESS ]", 32);
 
     return 0;

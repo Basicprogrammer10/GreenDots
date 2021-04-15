@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <string>
+#include <ctime>
 
 namespace common {
     // Split a string into a vector by a certain char
@@ -46,5 +47,16 @@ namespace common {
         if (name.empty()) return false;
         struct stat buffer{};
         return (stat(name.c_str(), &buffer) == 0);
+    }
+
+    // Returns the current date as a string (YYYY-MM-DD)
+    std::string getDateAsString() {
+        std::time_t t = std::time(nullptr);
+        std::tm* now = std::localtime(&t);
+        std::string time = std::to_string(now->tm_year + 1900) + "-" +
+               std::to_string(now->tm_mon + 1) + "-"
+               + std::to_string(now->tm_mday);
+
+        return time;
     }
 }

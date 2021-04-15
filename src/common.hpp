@@ -7,5 +7,6 @@ namespace common {
     std::string cleanConfigString(const std::string& configString);
     bool updateFile(const std::string &fileName, const std::string &text);
     bool exists(const std::string &name);
+    std::string getDateAsString();
 }
 #endif
