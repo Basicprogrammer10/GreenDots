@@ -1,9 +1,8 @@
+// Common misc functions used in multiple places
+
 #include <vector>
-#include <cstdio>
 #include <memory>
 #include <stdexcept>
-#include <array>
-#include <iostream>
 
 namespace common {
     // Split a string into a vector by a certain char

@@ -32,7 +32,7 @@ namespace config {
         std::string line;
         if (file.fail()) return "";
 
-        std::vector<char> buffer(file.tellg());
+        std::vector<char> buffer(static_cast<const unsigned int>(file.tellg()));
         file.seekg(0, std::ios::beg);
         while (std::getline(file,line)) fullFile += line += "\n";
         file.close();
@@ -41,13 +41,13 @@ namespace config {
     }
 
     // Parse the output of readConfig as a string and get value of the key
-    std::string getConfigValueFromKey(const std::string& configString, std::string key) {
+    std::string getConfigValueFromKey(const std::string& configString, const std::string& key) {
         std::vector<std::string> lines = common::tokenize(configString, '\n');
         std::vector<std::string> config;
         std::string output;
 
         for (auto & line : lines) {
-            std::vector<std::string> split = common::tokenize(line, '=');;
+            std::vector<std::string> split = common::tokenize(line, '=');
             config.insert(config.end(), split.begin(), split.end());
         }
 

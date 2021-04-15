@@ -1,4 +1,4 @@
-// Code for interacting with GIT //
+// Code for interacting with GIT
 
 #include <cstdlib>
 #include <string>

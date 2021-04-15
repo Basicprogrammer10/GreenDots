@@ -1,3 +1,5 @@
+// Main function that is run first
+
 #include <iostream>
 
 #include "console.hpp"
@@ -5,7 +7,7 @@
 #include "config.hpp"
 #include "common.hpp"
 
-#define version "0.0.3"
+#define version "0.0.4"
 #define configFile "config.confnose"
 
 int main() {
