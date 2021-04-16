@@ -94,8 +94,7 @@ namespace common {
     std::string cleanUserInput(const std::string &input) {
         char badChar[3] = {';', '&', '|'};
         std::string working = input;
-        for (char i : badChar)
-            working.erase(remove(working.begin(), working.end(), i), working.end());
+        for (char i : badChar) working.erase(remove(working.begin(), working.end(), i), working.end());
         return working;
     }
 

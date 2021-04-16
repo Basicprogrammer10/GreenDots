@@ -33,6 +33,5 @@ int main() {
         setup::writeDailyFile(pastDate, dailyFile);
         setup::commitToGit(gitFolder, pastDate);
         setup::pushToGit(gitFolder);
-
     }
 }
