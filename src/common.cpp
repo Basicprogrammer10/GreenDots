@@ -46,9 +46,14 @@ namespace common {
     // Check if file exists
     bool exists(const std::string &name) {
         if (name.empty()) return false;
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+        struct stat buffer{};
+        return (stat(name.c_str(), &buffer) == 0);
+#else
         std::ifstream file(name);
         if(!file.is_open()) return false;
         return true;
+#endif
     }
 
     // Returns the current date as a string (YYYY-MM-DD)
@@ -82,7 +87,8 @@ namespace common {
     std::string getOsNullPipe() {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
         return ">nul 2>&1";
-#endif
+#else
         return "> /dev/null 2>&1";
+#endif
     }
 }
