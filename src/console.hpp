@@ -3,6 +3,6 @@
 namespace console {
     void enableAnsiCodes();
     void debugPrint(const std::string& text, int colorCode, const std::string& stringEnd = "\n");
-    void errorPrint(const std::string& text, int colorCode, int exitCode);
+    void errorPrint(const std::string& text, int colorCode, int exitCode = 0);
 }
 #endif

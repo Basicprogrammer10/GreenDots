@@ -16,12 +16,11 @@ namespace config {
     }
 
     // Crate config file and supply it with starter data
-    bool createConfigFile(const std::string& name, const std::string& data) {
-        std::ofstream outfile(name);
-        if (outfile.fail()) return false;
-        outfile << data << std::endl;
-        outfile.close();
-        return true;
+    bool createConfigFile(const std::string& name, const std::vector<std::string>& data) {
+        std::string outData;
+        for (auto & i : data) outData += i + " = \"\"\n";
+
+        return common::createFile(name, outData);
     }
 
     // Read config file and return it as a string

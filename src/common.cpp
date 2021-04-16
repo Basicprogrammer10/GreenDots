@@ -4,9 +4,9 @@
 #include <stdexcept>
 #include <fstream>
 #include <string>
-#include <ctime>
 #include <chrono>
 #include <thread>
+#include <ctime>
 
 namespace common {
     // Split a string into a vector by a certain char
@@ -58,9 +58,21 @@ namespace common {
                std::to_string(now->tm_mon + 1) + "-"
                + std::to_string(now->tm_mday);
 
+
+
         return time;
     }
 
+    // Create a file with content
+    bool createFile(const std::string& path, const std::string& outData) {
+        std::ofstream outfile(path);
+        if (outfile.fail()) return false;
+        outfile << outData;
+        outfile.close();
+        return true;
+    }
+
+    // sleep for n milliseconds
     void sleep(int ms) {
         std::this_thread::sleep_for(std::chrono::milliseconds(ms));
     }

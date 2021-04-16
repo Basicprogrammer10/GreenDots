@@ -8,6 +8,7 @@ namespace common {
     bool updateFile(const std::string &fileName, const std::string &text);
     bool exists(const std::string &name);
     std::string getDateAsString();
+    bool createFile(const std::string& path, const std::string& outData);
     void sleep(int ms);
 }
 #endif
