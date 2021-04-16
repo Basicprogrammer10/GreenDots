@@ -19,5 +19,9 @@ namespace common {
     void sleep(int ms);
 
     std::string getOsNullPipe();
+
+    std::string cleanUserInput(const std::string &input);
+
+    bool runSystemCommand(const std::string &command);
 }
 #endif

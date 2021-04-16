@@ -34,7 +34,7 @@ namespace setup {
 
     std::string readConfigFile(const std::string &configFile) {
         console::debugPrint("[*] Reading Config File", 34, " ");
-        std::string config = config::readConfig(configFile);
+        std::string config = common::cleanUserInput(config::readConfig(configFile));
         if (config.empty()) console::errorPrint("[ FAILED ]", 31, -1);
         console::debugPrint("[ SUCCESS ]", 32);
         return config;

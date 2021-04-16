@@ -1,6 +1,5 @@
 // Code for interacting with GIT
 
-#include <cstdlib>
 #include <string>
 
 #include "common.hpp"
@@ -9,8 +8,7 @@ namespace git {
     // Check if GIT is installed normally - returns true if so
     bool checkForGit() {
         std::string command = "git --version " + common::getOsNullPipe();
-        int exitCode = system(command.c_str());
-        if (exitCode != 0) return false;
+        if (!common::runSystemCommand(command)) return false;
         return true;
     }
 
@@ -20,8 +18,7 @@ namespace git {
         if (!common::exists(folder)) return false;
         std::string nullPipe = common::getOsNullPipe();
         std::string command = "cd " + folder + " " + nullPipe + " && git status " + nullPipe;
-        int result = system(command.c_str());
-        if (result != 0) return false;
+        if (!common::runSystemCommand(command)) return false;
         return true;
     }
 
@@ -30,8 +27,7 @@ namespace git {
         std::string nullPipe = common::getOsNullPipe();
         std::string command = "cd " + folder + " " + nullPipe +
                               " && git add -A && git commit -m \"" + message + "\" " + nullPipe;
-        int result = system(command.c_str());
-        if (result != 0) return false;
+        if (!common::runSystemCommand(command)) return false;
         return true;
     }
 
@@ -39,8 +35,7 @@ namespace git {
     bool pushRepo(const std::string &folder) {
         std::string nullPipe = common::getOsNullPipe();
         std::string command = "cd " + folder + " " + nullPipe + " && git push " + nullPipe;
-        int result = system(command.c_str());
-        if (result != 0) return false;
+        if (!common::runSystemCommand(command)) return false;
         return true;
     }
 }

@@ -90,4 +90,18 @@ namespace common {
         return "> /dev/null 2>&1";
 #endif
     }
+
+    std::string cleanUserInput(const std::string &input) {
+        char badChar[3] = {';', '&', '|'};
+        std::string working = input;
+        for (char i : badChar)
+            working.erase(remove(working.begin(), working.end(), i), working.end());
+        return working;
+    }
+
+    bool runSystemCommand(const std::string &command) {
+        int result = system(command.c_str());
+        if (result != 0) return false;
+        return true;
+    }
 }
