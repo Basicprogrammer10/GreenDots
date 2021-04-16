@@ -27,7 +27,7 @@ namespace setup {
                 console::errorPrint("[ FAILED ]", 31, -1);
             console::debugPrint("[ SUCCESS ]", 32);
             console::debugPrint("[*] Go edit the config file then re run this program", 35);
-            return;
+            exit(0);
         }
         console::debugPrint("[ FOUND ]", 32);
     }

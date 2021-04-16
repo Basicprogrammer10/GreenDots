@@ -46,8 +46,9 @@ namespace common {
     // Check if file exists
     bool exists(const std::string &name) {
         if (name.empty()) return false;
-        struct stat buffer{};
-        return (stat(name.c_str(), &buffer) == 0);
+        std::ifstream file(name);
+        if(!file.is_open()) return false;
+        return true;
     }
 
     // Returns the current date as a string (YYYY-MM-DD)
@@ -82,6 +83,6 @@ namespace common {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
         return ">nul 2>&1";
 #endif
-        return "> /dev/null";
+        return "> /dev/null 2>&1";
     }
 }
