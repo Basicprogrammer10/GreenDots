@@ -59,12 +59,12 @@ namespace setup {
             bool createdDailyFile = common::createFile(dailyFile, "");
             if (!createdDailyFile) console::errorPrint("[ FAILED ]", 31, -1);
         }
-        console::debugPrint("[ SUCCESS ]", 32);
+        console::debugPrint("[ SUCCESS ]", 32, "\n\n");
         return dailyFile;
     }
 
     void writeDailyFile(const std::string& pastDate, const std::string& dailyFile) {
-        console::debugPrint(" " + pastDate + "\n\x1B[34m[*] Writing to daily File", 36, " ");
+        console::debugPrint("\033[1A\033[4C" + pastDate + "\n\x1B[34m[*] Writing to daily File", 36, " ");
         bool appendToFile =  common::updateFile(dailyFile, common::getDateAsString());
         if (!appendToFile) console::errorPrint("[ FAILED ]", 31, 0);
         else console::debugPrint("[ SUCCESS ]", 32);
@@ -81,6 +81,6 @@ namespace setup {
         console::debugPrint("[*] Pushing to Git", 34, " ");
         bool pushRepoSuccess = git::pushRepo(gitFolder);
         if (!pushRepoSuccess) console::errorPrint("[ FAILED ]", 31, 0);
-        else console::debugPrint("[ SUCCESS ]", 32);
+        else console::debugPrint("[ SUCCESS ]", 32, "\n\n");
     }
 }

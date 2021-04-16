@@ -5,7 +5,7 @@
 #include "common.hpp"
 #include "setup.hpp"
 
-#define version "0.1.1"
+#define version "0.1.2"
 #define configFile "config.confnose"
 
 int main() {
@@ -25,7 +25,7 @@ int main() {
 
     while (true) {
         for (auto &i : loadingAnimation) {
-            console::debugPrint("\033[0G[" + i + "]", 36, "");
+            console::debugPrint("\033[1A[" + i + "]", 36);
             common::sleep(500);
         }
         if (common::getDateAsString() == pastDate) continue;
