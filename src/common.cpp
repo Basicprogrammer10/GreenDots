@@ -91,13 +91,16 @@ namespace common {
 #endif
     }
 
+    // Remove chars that users could use to execute commands
     std::string cleanUserInput(const std::string &input) {
         char badChar[3] = {';', '&', '|'};
         std::string working = input;
         for (char i : badChar) working.erase(remove(working.begin(), working.end(), i), working.end());
+        // TODO: Make above code run on ubuntu
         return working;
     }
 
+    // Run commands and return true if successfully (false if not)
     bool runSystemCommand(const std::string &command) {
         int result = system(command.c_str());
         if (result != 0) return false;
