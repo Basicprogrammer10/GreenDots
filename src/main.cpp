@@ -5,7 +5,7 @@
 #include "common.hpp"
 #include "setup.hpp"
 
-#define version "0.1.0"
+#define version "0.1.1"
 #define configFile "config.confnose"
 
 int main() {
@@ -28,12 +28,11 @@ int main() {
             console::debugPrint("\033[0G[" + i + "]", 36, "");
             common::sleep(500);
         }
-        if (common::getDateAsString() != pastDate) {
-            pastDate = common::getDateAsString();
+        if (common::getDateAsString() == pastDate) continue;
+        pastDate = common::getDateAsString();
+        setup::writeDailyFile(pastDate, dailyFile);
+        setup::commitToGit(gitFolder, pastDate);
+        setup::pushToGit(gitFolder);
 
-            setup::writeDailyFile(pastDate, dailyFile);
-            setup::commitToGit(gitFolder, pastDate);
-            setup::pushToGit(gitFolder);
-        }
     }
 }
