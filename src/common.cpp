@@ -1,11 +1,12 @@
 // Common misc functions used in multiple places
 
-#include <vector>
 #include <stdexcept>
+#include <algorithm>
 #include <fstream>
 #include <string>
 #include <chrono>
 #include <thread>
+#include <vector>
 #include <ctime>
 
 namespace common {
@@ -96,7 +97,6 @@ namespace common {
         char badChar[3] = {';', '&', '|'};
         std::string working = input;
         for (char i : badChar) working.erase(remove(working.begin(), working.end(), i), working.end());
-        // TODO: Make above code run on ubuntu
         return working;
     }
 
