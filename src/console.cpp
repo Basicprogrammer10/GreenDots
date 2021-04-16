@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 #include <windows.h>
 #endif
@@ -19,12 +20,12 @@ namespace console {
     }
 
     // Prints text with color using ansi codes
-    void debugPrint(const std::string& text, int colorCode, const std::string& stringEnd = "\n") {
+    void debugPrint(const std::string &text, int colorCode, const std::string &stringEnd = "\n") {
         std::cout << "\x1B[" << colorCode << "m" << text << "\033[0m" << stringEnd;
     }
 
     // Prints text using DebugPrint and exits the program after a pause
-    void errorPrint(const std::string& text, int colorCode, int exitCode = 0){
+    void errorPrint(const std::string &text, int colorCode, int exitCode = 0) {
         debugPrint(text, colorCode);
         if (exitCode != 0) exit(exitCode);
     }

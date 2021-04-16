@@ -15,7 +15,7 @@ namespace git {
     }
 
     // Use the git command to check if a folder is a valid
-    bool checkIfGitRepo(const std::string& folder) {
+    bool checkIfGitRepo(const std::string &folder) {
         if (folder.empty()) return false;
         if (!common::exists(folder)) return false;
         std::string nullPipe = common::getOsNullPipe();
@@ -26,17 +26,17 @@ namespace git {
     }
 
     // Commits all changes in git repo
-    bool commitRepo(const std::string& folder, const std::string& message) {
+    bool commitRepo(const std::string &folder, const std::string &message) {
         std::string nullPipe = common::getOsNullPipe();
         std::string command = "cd " + folder + " " + nullPipe +
-                " && git add -A && git commit -m \"" + message + "\" "  + nullPipe;
+                              " && git add -A && git commit -m \"" + message + "\" " + nullPipe;
         int result = system(command.c_str());
         if (result != 0) return false;
         return true;
     }
 
     // Commits all changes in git repo
-    bool pushRepo(const std::string& folder) {
+    bool pushRepo(const std::string &folder) {
         std::string nullPipe = common::getOsNullPipe();
         std::string command = "cd " + folder + " " + nullPipe + " && git push " + nullPipe;
         int result = system(command.c_str());

@@ -23,7 +23,7 @@ namespace common {
     }
 
     // Remove quotes and newlines from config values
-    std::string cleanConfigString(const std::string& configString) {
+    std::string cleanConfigString(const std::string &configString) {
         std::vector<std::string> quotesSplit = tokenize(configString, '"');
         std::string final;
         if (quotesSplit.size() >= 2) final = quotesSplit[1];
@@ -59,18 +59,17 @@ namespace common {
     // Returns the current date as a string (YYYY-MM-DD)
     std::string getDateAsString() {
         std::time_t t = std::time(nullptr);
-        std::tm* now = std::localtime(&t);
+        std::tm *now = std::localtime(&t);
         std::string time = std::to_string(now->tm_year + 1900) + "-" +
-               std::to_string(now->tm_mon + 1) + "-"
-               + std::to_string(now->tm_mday);
-
+                           std::to_string(now->tm_mon + 1) + "-"
+                           + std::to_string(now->tm_mday);
 
 
         return time;
     }
 
     // Create a file with content
-    bool createFile(const std::string& path, const std::string& outData) {
+    bool createFile(const std::string &path, const std::string &outData) {
         std::ofstream outfile(path);
         if (outfile.fail()) return false;
         outfile << outData;
