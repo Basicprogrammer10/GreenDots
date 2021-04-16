@@ -76,4 +76,12 @@ namespace common {
     void sleep(int ms) {
         std::this_thread::sleep_for(std::chrono::milliseconds(ms));
     }
+
+    // Get the os null Pipe (/dev/null or >nul 2>&1)
+    std::string getOsNullPipe() {
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+        return ">nul 2>&1";
+#endif
+        return "> /dev/null";
+    }
 }

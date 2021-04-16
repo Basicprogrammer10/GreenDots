@@ -10,5 +10,6 @@ namespace common {
     std::string getDateAsString();
     bool createFile(const std::string& path, const std::string& outData);
     void sleep(int ms);
+    std::string getOsNullPipe();
 }
 #endif

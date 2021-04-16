@@ -1,4 +1,5 @@
 // Functions to setup stuff...
+// Function names are good enough descriptions lol
 
 #include <iostream>
 
