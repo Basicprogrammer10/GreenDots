@@ -5,7 +5,7 @@
 #include "common.hpp"
 #include "setup.hpp"
 
-#define version "0.1.2"
+#define version "0.1.3"
 #define configFile "config.confnose"
 
 int main() {

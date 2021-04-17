@@ -1,13 +1,11 @@
 // Common misc functions used in multiple places
 
-#include <stdexcept>
+#include <sys/stat.h>
 #include <algorithm>
 #include <fstream>
-#include <string>
 #include <chrono>
 #include <thread>
 #include <vector>
-#include <ctime>
 
 namespace common {
     // Split a string into a vector by a certain char
@@ -52,8 +50,7 @@ namespace common {
         return (stat(name.c_str(), &buffer) == 0);
 #else
         std::ifstream file(name);
-        if(!file.is_open()) return false;
-        return true;
+        return file.is_open();
 #endif
     }
 
