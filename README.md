@@ -38,7 +38,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -69,7 +68,7 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 * [CMake](https://cmake.org/)
-* 
+
 ### Installation
 
 0. Check [Prerequisites](#prerequisites) and make sure you have the needed things...
@@ -78,14 +77,7 @@ To get a local copy up and running follow these simple steps.
 3. After running it edit the `config.confnose` file to have the folder of the git repo you want to use
 4. Run it again and watch the ✨magic✨ happen (then wait untill the next day to see it again)
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-If you need help setting this up or want to know what all the settings do then check **![this](https://github.com/Basicprogrammer10/2B2T-Queue-Notifier/blob/master/Settings.md)** out! **(Highly Recommended)**
-
 **Contact me** on Discord at `Sigma#8214` if you still need help.
-
-
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -102,8 +94,6 @@ Contributions are what make the open source community such an amazing place to l
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-
 
 <!-- LICENSE -->
 ## License
