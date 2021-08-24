@@ -34,4 +34,13 @@ namespace git {
         std::string command = "cd " + folder + " " + nullPipe + " && git push " + nullPipe;
         return common::runSystemCommand(command);
     }
+
+    // Set get Auto Commit Signing
+    bool setCommitSigning(bool value) {
+        std::string nullPipe = common::getOsNullPipe();
+        std::string valueString = "false";
+        if (value) valueString = "true";
+        std::string command = "git config commit.gpgsign " + valueString;
+        return common::runSystemCommand(command);
+    }
 }

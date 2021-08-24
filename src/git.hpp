@@ -8,5 +8,7 @@ namespace git {
     bool commitRepo(const std::string &folder, const std::string &message);
 
     bool pushRepo(const std::string &folder);
+
+    bool setCommitSigning(bool value);
 }
 #endif

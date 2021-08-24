@@ -5,7 +5,7 @@
 #include "common.hpp"
 #include "setup.hpp"
 
-#define version "0.1.3"
+#define version "0.1.4"
 #define configFile "config.confnose"
 
 int main() {
@@ -31,7 +31,9 @@ int main() {
         if (common::getDateAsString() == pastDate) continue;
         pastDate = common::getDateAsString();
         setup::writeDailyFile(pastDate, dailyFile);
+        setup::setCommitSigning(false);
         setup::commitToGit(gitFolder, pastDate);
+        setup::reEnableCommitSigning(config);
         setup::pushToGit(gitFolder);
     }
 }

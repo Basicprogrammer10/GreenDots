@@ -16,5 +16,9 @@ namespace setup {
     void commitToGit(const std::string &gitFolder, const std::string &pastDate);
 
     void pushToGit(const std::string &gitFolder);
+
+    void setCommitSigning(bool value);
+
+    void reEnableCommitSigning(const std::string& config);
 }
 #endif

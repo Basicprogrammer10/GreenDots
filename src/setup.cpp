@@ -83,4 +83,13 @@ namespace setup {
         if (!pushRepoSuccess) console::errorPrint("[ FAILED ]", 31, 0);
         else console::debugPrint("[ SUCCESS ]", 32, "\n\n");
     }
+
+    void setCommitSigning(bool value) {
+        git::setCommitSigning(value);
+    }
+
+    void reEnableCommitSigning(const std::string& config) {
+        std::string configValue = config::getConfigValueFromKey(config, "enableCommitSigning");
+        if (configValue == "true") git::setCommitSigning(false);
+    }
 }
